@@ -6,3 +6,5 @@ You have #{pluralize(@gadgets.count, 'gadget')}
   -@gadgets.each do |gadget|
     %li
       = link_to gadget.name, edit_gadget_path(gadget)
+
+= link_to 'Add Gadget', new_gadget_path

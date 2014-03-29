@@ -22,7 +22,8 @@ feature 'Managing Gadgets' do
   end
 
   scenario "Adding a new gadget" do
-    visit new_gadget_path
+    visit gadgets_path
+    click_link 'Add Gadget'
     fill_in 'Name', with: "iPhone"
     click_button 'Create Gadget'
     expect(current_path).to eq(gadgets_path)
