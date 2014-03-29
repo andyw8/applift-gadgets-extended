@@ -56,5 +56,5 @@ AppliftGadgets::Application.routes.draw do
   #     resources :products
   #   end
 
-  resources :gadgets, only: [:index, :new, :create, :edit, :update]
+  resources :gadgets, except: [:show]
 end

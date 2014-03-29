@@ -29,6 +29,13 @@ class GadgetsController < ApplicationController
     redirect_to gadgets_path
   end
 
+  def destroy
+    @gadget = Gadget.find(params[:id])
+    @gadget.destroy
+    flash[:notice] = "Gadget deleted"
+    redirect_to gadgets_path
+  end
+
   private
 
   def gadget_params

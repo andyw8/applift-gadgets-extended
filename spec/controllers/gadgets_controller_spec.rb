@@ -54,4 +54,14 @@ describe GadgetsController do
       expect(response).to redirect_to gadgets_path
     end
   end
+
+  describe "DELETE 'destroy'" do
+    let(:gadget) { FactoryGirl.create(:gadget) }
+
+    it "deletes the gadget and redirects" do
+      delete :destroy, id: gadget.id
+      expect(response).to redirect_to gadgets_path
+      expect(Gadget.count).to eq(0)
+    end
+  end
 end
