@@ -2,5 +2,6 @@
 
 FactoryGirl.define do
   factory :gadget do
+    name 'iPhone'
   end
 end
