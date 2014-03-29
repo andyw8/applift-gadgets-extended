@@ -3,5 +3,6 @@
 FactoryGirl.define do
   factory :gadget do
     name 'iPhone'
+    association :owner, factory: :user
   end
 end

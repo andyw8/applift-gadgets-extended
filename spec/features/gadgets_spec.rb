@@ -1,8 +1,9 @@
 require 'spec_helper'
 
 feature 'Managing Gadgets' do
+  let(:user) { FactoryGirl.create(:user) }
+
   before do
-    user = FactoryGirl.create(:user)
     visit new_user_session_path
     fill_in 'Email', with: user.email
     fill_in 'Password', with: 'hello123'
@@ -15,7 +16,7 @@ feature 'Managing Gadgets' do
   end
 
   scenario "A user with some gadgets" do
-    2.times { FactoryGirl.create(:gadget) }
+    2.times { FactoryGirl.create(:gadget, owner: user) }
     visit gadgets_path
     expect(page).to have_content "You have 2 gadgets"
     expect(page).to have_css('.gadgets li', count: 2)
@@ -36,7 +37,7 @@ feature 'Managing Gadgets' do
   end
 
   scenario "Editing a gadget" do
-    FactoryGirl.create(:gadget, name: 'iPad')
+    FactoryGirl.create(:gadget, name: 'iPad', owner: user)
     visit gadgets_path
     click_link 'iPad'
     fill_in 'Name', with: 'iPad Air'
@@ -52,7 +53,7 @@ feature 'Managing Gadgets' do
   end
 
   scenario "Deleting a gadget" do
-    FactoryGirl.create(:gadget, name: 'iPad')
+    FactoryGirl.create(:gadget, name: 'iPad', owner: user)
     visit gadgets_path
     click_link 'iPad'
     click_button 'Delete Gadget'
@@ -61,5 +62,3 @@ feature 'Managing Gadgets' do
     expect(page).to have_no_content "iPad Air"
   end
 end
-
-

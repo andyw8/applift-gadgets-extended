@@ -3,15 +3,15 @@ class GadgetsController < ApplicationController
   before_filter :find_model, only: [:edit, :update, :destroy]
 
   def index
-    @gadgets = Gadget.all
+    @gadgets = scoped_gadgets
   end
 
   def new
-    @gadget = Gadget.new
+    @gadget = scoped_gadgets.new
   end
 
   def create
-    @gadget = Gadget.new(gadget_params)
+    @gadget = scoped_gadgets.new(gadget_params)
     if @gadget.save
       flash[:notice] = "New gadget added"
       redirect_to gadgets_path
@@ -43,6 +43,10 @@ class GadgetsController < ApplicationController
   end
 
   def find_model
-    @gadget = Gadget.find(params[:id])
+    @gadget = scoped_gadgets.find(params[:id])
+  end
+
+  def scoped_gadgets
+    current_user.gadgets
   end
 end
