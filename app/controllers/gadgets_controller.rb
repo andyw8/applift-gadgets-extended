@@ -1,4 +1,5 @@
 class GadgetsController < ApplicationController
+  before_filter :authenticate_user!
   before_filter :find_model, only: [:edit, :update, :destroy]
 
   def index
