@@ -9,9 +9,13 @@ class GadgetsController < ApplicationController
 
   def create
     @gadget = Gadget.new(gadget_params)
-    @gadget.save # TODO handle save failures
-    flash[:notice] = "New gadget added"
-    redirect_to gadgets_path
+    if @gadget.save
+      flash[:notice] = "New gadget added"
+      redirect_to gadgets_path
+    else
+      flash[:error] = "There was a problem"
+      render 'new'
+    end
   end
 
   private

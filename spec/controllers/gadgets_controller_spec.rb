@@ -16,12 +16,23 @@ describe GadgetsController do
   end
 
   describe "POST 'create'" do
-    it "assigns a new gadget" do
-      valid_attrs = FactoryGirl.attributes_for(:gadget)
+    let(:valid_attrs) { FactoryGirl.attributes_for(:gadget) }
+
+    it "assigns a new gadget, perists it, and redirects" do
       post :create, { gadget: valid_attrs }
       expect(assigns(:gadget)).to be_a(Gadget)
       expect(assigns(:gadget)).to be_persisted
       expect(response).to redirect_to gadgets_path
+    end
+
+    context "with missing required information" do
+      it "assigns a new gadgets, doesn't persist it, re-renders the :new template" do
+        valid_attrs['name'] = ''
+        post :create, { gadget: valid_attrs }
+        expect(assigns(:gadget)).to be_a(Gadget)
+        expect(assigns(:gadget)).to_not be_persisted
+        expect(response).to render_template(:new)
+      end
     end
   end
 end
