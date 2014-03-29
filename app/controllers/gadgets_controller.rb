@@ -18,6 +18,17 @@ class GadgetsController < ApplicationController
     end
   end
 
+  def edit
+    @gadget = Gadget.find(params[:id])
+  end
+
+  def update
+    @gadget = Gadget.find(params[:id]) # TODO refactor to avoid duplication
+    @gadget.update(gadget_params) # TODO handle failed update
+    flash[:notice] = "Gadget updated"
+    redirect_to gadgets_path
+  end
+
   private
 
   def gadget_params

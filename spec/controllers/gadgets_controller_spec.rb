@@ -35,4 +35,23 @@ describe GadgetsController do
       end
     end
   end
+
+  describe "GET 'edit'" do
+    let(:gadget) { FactoryGirl.create(:gadget) } # TODO use build_stubbed here?
+
+    it "assigns the gadget" do
+      get :edit, id: gadget.id
+      expect(assigns(:gadget)).to eq(gadget)
+    end
+  end
+
+  describe "PATCH 'update'" do
+    let(:gadget) { FactoryGirl.create(:gadget) } # TODO use build_stubbed here?
+
+    it "assigns the gadget and redirects" do
+      patch :update, id: gadget.id, gadget: FactoryGirl.attributes_for(:gadget)
+      expect(assigns(:gadget)).to eq(gadget)
+      expect(response).to redirect_to gadgets_path
+    end
+  end
 end
