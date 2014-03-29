@@ -43,3 +43,23 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller', :platforms => [:mri_20, :rbx]
+  gem 'letter_opener'
+  gem 'pry'
+  gem 'spring'
+end
+
+group :development, :test do
+  gem 'factory_girl_rails'
+  gem 'rspec-rails'
+  gem 'shoulda-matchers'
+end
+
+group :test do
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'launchy'
+end
