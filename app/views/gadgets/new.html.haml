@@ -1,11 +1,2 @@
-=form_for @gadget do |f|
-  - if @gadget.errors.any?
-    %div There were problems:
-    %ul
-      - @gadget.errors.full_messages.each do |message|
-        %li= message
-
-  = f.label :name
-  = f.text_field :name
-  = f.submit
+=render 'form'
 
