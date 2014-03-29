@@ -1,3 +1,7 @@
 %h1 Gadgets
 
 You have #{pluralize(@gadgets.count, 'gadget')}
+
+%ul.gadgets
+  -@gadgets.each do |gadget|
+    %li= gadget.name

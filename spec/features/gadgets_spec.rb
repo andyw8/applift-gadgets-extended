@@ -10,6 +10,7 @@ feature 'Managing Gadgets' do
     2.times { FactoryGirl.create(:gadget) }
     visit gadgets_path
     expect(page).to have_content "You have 2 gadgets"
+    expect(page).to have_css('.gadgets li', count: 2)
   end
 
   scenario "Adding a new gadget" do
