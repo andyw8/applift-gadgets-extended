@@ -1,6 +1,14 @@
 require 'spec_helper'
 
 feature 'Managing Gadgets' do
+  before do
+    user = FactoryGirl.create(:user)
+    visit new_user_session_path
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: 'hello123'
+    click_button 'Sign in'
+  end
+
   scenario "A user with no gadgets" do
     visit gadgets_path
     expect(page).to have_content "You have 0 gadgets"
