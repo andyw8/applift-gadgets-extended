@@ -1,6 +1,9 @@
 %h1 Gadgets
 
 You have #{pluralize(@gadgets.count, 'gadget')}
+- if params[:query]
+  matching the query '#{params[:query]}'
+
 
 %ul.gadgets
   -@gadgets.each do |gadget|
