@@ -46,6 +46,7 @@ end
 
 gem 'devise'
 gem 'haml-rails'
+gem 'carrierwave'
 
 group :development do
   gem 'better_errors'
