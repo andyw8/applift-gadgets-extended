@@ -13,15 +13,13 @@ describe GadgetsController do
       response.should be_success
     end
 
-    # failing in spec but seems ok in browser - need to investigate further
-    xit "returns only gadgets belonging to the logged in user" do
+    it "returns only gadgets belonging to the logged in user" do
       me = user # same object as other specs, just renamed for clarity
       my_friend = FactoryGirl.create(:user, email: 'friend@example.com')
       my_gadget = FactoryGirl.create(:gadget, name: 'Samsung S3', owner: me)
       my_friends_gadget = FactoryGirl.create(:gadget, name: 'Nintendo Wii', owner: my_friend)
       get :index
-      expect(response).to have_content(my_gadget.name)
-      expect(response).to have_no_content(my_friends_gadget.name)
+      expect(assigns(:gadgets)).to eq [my_gadget]
     end
   end
 
