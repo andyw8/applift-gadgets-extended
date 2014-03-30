@@ -43,7 +43,7 @@ class GadgetsController < ApplicationController
   private
 
   def gadget_params
-    params.require(:gadget).permit(:name)
+    params.require(:gadget).permit(:name, :image)
   end
 
   def find_model

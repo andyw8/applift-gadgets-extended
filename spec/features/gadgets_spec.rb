@@ -26,6 +26,7 @@ feature 'Managing Gadgets' do
     visit gadgets_path
     click_link 'Add Gadget'
     fill_in 'Name', with: "iPhone"
+    attach_file('Image', File.join(Rails.root, '/spec/fixtures/iphone.png'))
     click_button 'Create Gadget'
     expect(current_path).to eq(gadgets_path)
     expect(page).to have_content "New gadget added"

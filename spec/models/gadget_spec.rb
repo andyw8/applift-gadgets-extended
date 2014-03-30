@@ -3,6 +3,7 @@ require 'spec_helper'
 describe Gadget do
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:owner) }
+  it { should validate_presence_of(:image) }
   it { should belong_to(:owner).class_name('User') }
 
   context "scopes" do
