@@ -3,7 +3,11 @@ class GadgetsController < ApplicationController
   before_filter :find_model, only: [:edit, :update, :destroy]
 
   def index
-    @gadgets = scoped_gadgets
+    if params[:query]
+      @gadgets = scoped_gadgets.match_name(params[:query])
+    else
+      @gadgets = scoped_gadgets
+    end
   end
 
   def new

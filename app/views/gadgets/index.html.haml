@@ -8,3 +8,7 @@ You have #{pluralize(@gadgets.count, 'gadget')}
       = link_to gadget.name, edit_gadget_path(gadget)
 
 = link_to 'Add Gadget', new_gadget_path
+
+= form_tag gadgets_path, method: :get do
+  = search_field_tag :query
+  = submit_tag 'Search'
